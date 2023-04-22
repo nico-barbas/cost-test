@@ -24,6 +24,11 @@ export class FormComponent {
 
   handleSubmit() {
     // Check if the submitted data is valid
+    if (this.item.date === '') {
+      console.error('invalid date');
+      return;
+    }
+
     const date = new Date(this.item.date);
     if (date.getTime() < this.currentDate.getTime()) {
       console.error('invalid date: ', date.toISOString());
@@ -43,7 +48,6 @@ export class FormComponent {
 
   validateDate(): boolean {
     const date = new Date(this.item.date);
-    console.log(date.getTime(), this.currentDate.getTime());
     return date.getTime() < this.currentDate.getTime();
   }
 
