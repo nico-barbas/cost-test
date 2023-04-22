@@ -1,5 +1,5 @@
 <div class="item">
-  <p class="item-date">{{ date.toISOString() }}</p>
+  <p class="item-date">{{ datePipe.transform(date, "yyyy-MM-dd") ?? "" }}</p>
   <p [ngStyle]="{ 'min-width': '30%', 'text-align': 'center' }">
     {{ amount }}€
   </p>

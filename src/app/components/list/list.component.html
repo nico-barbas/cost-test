@@ -4,7 +4,11 @@
 </div> -->
 
 <div class="row-centered m-y2">
-  <button *ngIf="items.length > 0" class="btn clear-btn" (click)="clearItems()">
+  <button
+    *ngIf="items.length > 0"
+    class="btn clear-btn m-b2"
+    (click)="clearItems()"
+  >
     CLEAR
   </button>
   <app-item

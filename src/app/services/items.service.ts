@@ -12,6 +12,7 @@ export class ItemsService {
   itemsSubject = new BehaviorSubject<Item[]>([]);
 
   constructor() {
+    // Check and retrieve previous data
     const data = localStorage.getItem('itemsData');
 
     if (data) {
@@ -29,6 +30,7 @@ export class ItemsService {
           return a.date.getTime() - b.date.getTime();
         });
 
+      // Find the current highest ID from the retrieved items
       this.items.forEach((item) => {
         if (item.id && item.id >= this.nextID) {
           this.nextID = item.id + 1;
@@ -39,9 +41,23 @@ export class ItemsService {
     }
   }
 
+  // Used for persistent storage
   private serializeItems() {
     const rawData = JSON.stringify(this.items);
     localStorage.setItem('itemsData', rawData);
+  }
+
+  private sortItems() {
+    this.items = this.items.sort((a, b) => {
+      return a.date.getTime() - b.date.getTime();
+    });
+  }
+
+  // Sort, save and publish to listeners
+  private commitChanges() {
+    this.sortItems();
+    this.serializeItems();
+    this.itemsSubject.next(this.items);
   }
 
   private static getInstance(): ItemsService {
@@ -50,10 +66,6 @@ export class ItemsService {
     }
 
     return this.instance;
-  }
-
-  static getItems(): Item[] {
-    return this.getInstance().items;
   }
 
   static getItemsObservable(): Observable<Item[]> {
@@ -66,8 +78,7 @@ export class ItemsService {
     instance.nextID += 1;
 
     instance.items.push(item);
-    instance.serializeItems();
-    instance.itemsSubject.next(instance.items);
+    instance.commitChanges();
   }
 
   static removeItem(item: Item) {
@@ -75,14 +86,12 @@ export class ItemsService {
     instance.items = instance.items.filter((it) => {
       return it.id !== item.id;
     });
-    instance.serializeItems();
-    instance.itemsSubject.next(instance.items);
+    instance.commitChanges();
   }
 
   static clearItems() {
     const instance = this.getInstance();
     instance.items = [];
-    instance.serializeItems();
-    instance.itemsSubject.next(instance.items);
+    instance.commitChanges();
   }
 }

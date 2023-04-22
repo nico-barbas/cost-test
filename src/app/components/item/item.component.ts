@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -10,6 +11,8 @@ export class ItemComponent {
   @Input() date = new Date();
   @Input() amount = 0;
   @Output() deleteItem = new EventEmitter();
+
+  constructor(public datePipe: DatePipe) {}
 
   onCrossClick() {
     this.deleteItem.emit({

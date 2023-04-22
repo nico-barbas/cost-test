@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ItemsService } from 'src/app/services/items.service';
-import { Item } from 'src/app/Item';
 
 @Component({
   selector: 'app-form',
@@ -11,6 +10,7 @@ import { Item } from 'src/app/Item';
 export class FormComponent {
   currentDate: Date;
 
+  // model for the form
   item = { date: '', amount: 0 };
 
   constructor(private datePipe: DatePipe) {
@@ -23,6 +23,7 @@ export class FormComponent {
   }
 
   handleSubmit() {
+    // Check if the submitted data is valid
     const date = new Date(this.item.date);
     if (date.getTime() < this.currentDate.getTime()) {
       console.error('invalid date: ', date.toISOString());
@@ -33,20 +34,20 @@ export class FormComponent {
       return;
     }
     ItemsService.addItem({ date: date, amount: this.item.amount });
+
+    // Reset the form
+    this.item.amount = 1;
+    this.item.date =
+      this.datePipe.transform(this.currentDate, 'yyyy-MM-dd') ?? '';
   }
 
-  validateDate() {
+  validateDate(): boolean {
     const date = new Date(this.item.date);
     console.log(date.getTime(), this.currentDate.getTime());
     return date.getTime() < this.currentDate.getTime();
   }
 
-  validateAmount() {
+  validateAmount(): boolean {
     return isNaN(this.item.amount) || this.item.amount <= 0;
   }
-}
-
-interface CostFormElements extends HTMLCollection {
-  date: HTMLInputElement;
-  amount: HTMLInputElement;
 }
