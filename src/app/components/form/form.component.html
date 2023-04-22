@@ -1,0 +1,44 @@
+<div class="centered form-container border-outline">
+  <form
+    class="form-content border-outline border-offset"
+    (ngSubmit)="handleSubmit()"
+  >
+    <div class="m-b2">
+      <p class="m-b1">Enter a date:</p>
+      <input
+        class="form-input border-rounded w100"
+        type="date"
+        name="date"
+        #date="ngModel"
+        [(ngModel)]="item.date"
+        required
+      />
+      <div
+        class="form-error"
+        *ngIf="date.errors?.['required'] || validateDate()"
+      >
+        Invalid date
+      </div>
+    </div>
+
+    <div class="m-b2">
+      <p class="m-b1">Enter a price (in Euro):</p>
+      <input
+        class="form-input border-rounded w100"
+        type="number"
+        name="amount"
+        step="any"
+        #amount="ngModel"
+        [(ngModel)]="item.amount"
+        required
+      />
+      <div
+        class="form-error"
+        *ngIf="amount.errors?.['required'] || validateAmount()"
+      >
+        Invalid amount
+      </div>
+    </div>
+    <button class="btn w100" type="submit">ADD</button>
+  </form>
+</div>

@@ -1,1 +1,79 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  margin: 0;
+  padding: 0;
+  border-style: none;
+  outline-style: none;
+}
+
+button {
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  border-style: none;
+  outline-style: none;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+.row-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.m-y1 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.m-y2 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.m-b1 {
+  margin-bottom: 0.5rem;
+}
+
+.m-b2 {
+  margin-bottom: 1rem;
+}
+
+.btn {
+  border: 2px solid rgb(25, 25, 25);
+  border-radius: 10px;
+}
+
+.border-rounded {
+  border-radius: 10px;
+}
+
+.border-outline {
+  border: solid 2px black;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.border-offset {
+  transform: translate(-10px, -10px);
+}
+
+.border-offset-x {
+  transform: translate(-10px, 0px);
+}

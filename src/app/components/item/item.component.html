@@ -1,0 +1,7 @@
+<div class="item">
+  <p class="item-date">{{ date.toISOString() }}</p>
+  <p [ngStyle]="{ 'min-width': '30%', 'text-align': 'center' }">
+    {{ amount }}€
+  </p>
+  <button class="close-btn" (click)="onCrossClick()">x</button>
+</div>

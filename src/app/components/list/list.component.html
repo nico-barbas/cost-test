@@ -1,0 +1,19 @@
+<!-- <div class="cart-item" *ngFor="let item of items">
+  <span>{{ item.date }}</span>
+  <span>{{ item.amount }}</span>
+</div> -->
+
+<div class="row-centered m-y2">
+  <button *ngIf="items.length > 0" class="btn clear-btn" (click)="clearItems()">
+    CLEAR
+  </button>
+  <app-item
+    *ngFor="let item of items"
+    class="w100 m-b1"
+    [id]="item.id ?? 0"
+    [date]="item.date"
+    [amount]="item.amount"
+    (deleteItem)="deleteItem($event)"
+  >
+  </app-item>
+</div>

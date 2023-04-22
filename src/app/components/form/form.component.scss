@@ -1,0 +1,46 @@
+.form-container {
+  display: block;
+  width: 25vw;
+}
+
+@media screen and (max-width: 1600px) {
+  .form-container {
+    width: 33vw;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .form-container {
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .form-container {
+    width: 75vw;
+  }
+}
+
+.form-content {
+  padding: 2rem;
+}
+
+.form-input {
+  box-sizing: border-box;
+  height: 2rem;
+  padding: 10px 20px;
+  background: rgb(235, 235, 235);
+}
+
+.form-container button {
+  box-sizing: border-box;
+  padding: 10px 20px;
+  background-color: white;
+  &:hover {
+    background-color: rgb(245, 245, 245);
+  }
+}
+
+.form-error {
+  color: rgb(202, 78, 78);
+}

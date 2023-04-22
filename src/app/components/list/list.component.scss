@@ -1,0 +1,12 @@
+.clear-btn {
+  padding: 0.5rem 1rem;
+  background-color: rgb(202, 78, 78);
+  border-color: white;
+  color: white;
+
+  &:hover {
+    color: rgb(202, 78, 78);
+    border-color: rgb(202, 78, 78);
+    background-color: white;
+  }
+}
