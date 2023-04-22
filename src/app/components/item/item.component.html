@@ -1,7 +1,7 @@
 <div class="item">
   <p class="item-date">{{ datePipe.transform(date, "yyyy-MM-dd") ?? "" }}</p>
   <p [ngStyle]="{ 'min-width': '30%', 'text-align': 'center' }">
-    {{ amount }}€
+    {{ amount.toFixed(2) }}€
   </p>
   <button class="close-btn" (click)="onCrossClick()">x</button>
 </div>
